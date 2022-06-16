@@ -1,0 +1,16 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "978f7b3b-5223-d34f-ca19-0feb72df148e": {
+      "ProjectGuid": "978f7b3b-5223-d34f-ca19-0feb72df148e",
+      "DisplayName": "ARDK-Examples",
+      "ColorIndex": 0
+    },
+    "2931af25-1dd3-4d83-24ac-7d8aae9eb95b": {
+      "ProjectGuid": "2931af25-1dd3-4d83-24ac-7d8aae9eb95b",
+      "DisplayName": "Assembly-CSharp",
+      "ColorIndex": 1
+    }
+  },
+  "NextColorIndex": 2
+}
