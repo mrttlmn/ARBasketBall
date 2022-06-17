@@ -1,5 +1,24 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &1862446811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3378742778289678343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80198c6deee0a4c5c9096accbcac4119, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _manageUsingUnityLifecycle: 1
+  _camera: {fileID: 3363422157329644171}
+  _keyFrameFrequency: 20
+  _interpolation: 2
+  _interpolationPreference: 0.9
+  _occlusionMode: 0
+  _textureFilterMode: 0
 --- !u!1 &7315055104982771470
 GameObject:
   m_ObjectHideFlags: 0
@@ -9,8 +28,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5400245468795486348}
-  - component: {fileID: 2989438510040242303}
   - component: {fileID: 7636423979006713103}
+  - component: {fileID: 86384871}
   m_Layer: 0
   m_Name: ARSceneManager
   m_TagString: Untagged
@@ -33,25 +52,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2989438510040242303
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7315055104982771470}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00203f13141804260a205f7c8a71dc60, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _manageUsingUnityLifecycle: 1
-  RuntimeEnvironment: 0
-  _runOptions: 0
-  _useWithARNetworkingSession: 0
-  _isLightEstimationEnabled: 0
-  _isAutoFocusEnabled: 0
-  _worldAlignment: 0
 --- !u!114 &7636423979006713103
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -71,6 +71,19 @@ MonoBehaviour:
   Failure:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &86384871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7315055104982771470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 544755552afaf4436af235f6de9be0b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _permissions: 00000000
 --- !u!1001 &3379242557800286195
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -128,9 +141,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 924a7268bfe9947e095cce9a99ed0458, type: 3}
+--- !u!1 &3378742778289678343 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1917084503044084, guid: 924a7268bfe9947e095cce9a99ed0458, type: 3}
+  m_PrefabInstance: {fileID: 3379242557800286195}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3381041692372307289 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 4121737292843690, guid: 924a7268bfe9947e095cce9a99ed0458,
-    type: 3}
+  m_CorrespondingSourceObject: {fileID: 4121737292843690, guid: 924a7268bfe9947e095cce9a99ed0458, type: 3}
+  m_PrefabInstance: {fileID: 3379242557800286195}
+  m_PrefabAsset: {fileID: 0}
+--- !u!20 &3363422157329644171 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 20333895847132536, guid: 924a7268bfe9947e095cce9a99ed0458, type: 3}
   m_PrefabInstance: {fileID: 3379242557800286195}
   m_PrefabAsset: {fileID: 0}
