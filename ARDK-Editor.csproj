@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{476F4410-9380-0651-4122-3A0FF01FB2D4}</ProjectGuid>
+    <ProjectGuid>{14C69385-A23D-13C1-12A7-07BF2BF4187D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>ARDK-Editor</AssemblyName>
@@ -686,7 +686,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="ARDK.csproj">
-      <Project>{3AABBEB6-4D3A-DCFA-16ED-3D614B6BA148}</Project>
+      <Project>{462C038A-3810-4511-72D5-25F2F4477BFA}</Project>
       <Name>ARDK</Name>
     </ProjectReference>
   </ItemGroup>

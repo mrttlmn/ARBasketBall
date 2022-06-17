@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{2931AF25-1DD3-4D83-24AC-7D8AAE9EB95B}</ProjectGuid>
+    <ProjectGuid>{1F3FFA0A-02A8-1488-F88E-03787831C6F5}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -57,13 +57,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\SwipeDetector.cs" />
+    <Compile Include="Assets\Scripts\SharedAR.cs" />
     <Compile Include="Assets\Scripts\HoopManager.cs" />
     <Compile Include="Assets\Scripts\HoopController.cs" />
     <Compile Include="Assets\Scripts\SwipeLogger.cs" />
     <Compile Include="Assets\Scripts\BallStats.cs" />
     <Compile Include="Assets\Scripts\BallThrow.cs" />
     <Compile Include="Assets\Scripts\ThrowButtonControls.cs" />
-    <Compile Include="Assets\Scripts\SharedAR.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
@@ -689,11 +689,11 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="ARDK-Editor.csproj">
-      <Project>{476F4410-9380-0651-4122-3A0FF01FB2D4}</Project>
+      <Project>{14C69385-A23D-13C1-12A7-07BF2BF4187D}</Project>
       <Name>ARDK-Editor</Name>
     </ProjectReference>
     <ProjectReference Include="ARDK.csproj">
-      <Project>{3AABBEB6-4D3A-DCFA-16ED-3D614B6BA148}</Project>
+      <Project>{462C038A-3810-4511-72D5-25F2F4477BFA}</Project>
       <Name>ARDK</Name>
     </ProjectReference>
   </ItemGroup>
