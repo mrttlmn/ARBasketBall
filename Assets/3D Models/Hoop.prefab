@@ -29,6 +29,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0.7071068, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0.536}
   m_LocalScale: {x: 0.001, y: 0.001, z: 0.001}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1769972851817774167}
   - {fileID: 6566482157400453724}
@@ -131,6 +132,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5361418398728943583}
   m_Father: {fileID: 5377102261250013824}
@@ -263,6 +265,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6849028512835568201}
   m_RootOrder: 0
@@ -342,6 +345,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1769972851817774167}
   m_RootOrder: 0
@@ -422,6 +426,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4850509957550813929}
   m_Father: {fileID: 5377102261250013824}
@@ -555,6 +560,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6078049267964824340}
   m_Father: {fileID: 5377102261250013824}
@@ -687,6 +693,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6566482157400453724}
   m_RootOrder: 0
@@ -748,6 +755,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4428586262105570234}
   - component: {fileID: 2942224305631391939}
+  - component: {fileID: 9223182107242028739}
+  - component: {fileID: 6246108389691691156}
   m_Layer: 0
   m_Name: Hoop
   m_TagString: Untagged
@@ -765,6 +774,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7889953480265590172}
   - {fileID: 8728786771005973460}
@@ -783,6 +793,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92bc76c8d71ced0458759a57e5e67337, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &9223182107242028739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7984376276481819372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17d034239e1d4c618a9095b87e94d006, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _owner: {fileID: 6246108389691691156}
+  _ownedByHost: 1
+  _observeByDefault: 1
+--- !u!114 &6246108389691691156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7984376276481819372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fd171c6c1184ff491f420f69849ba07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rawId: 0
+  _prefabId: 633325995260618572
+  _destructionAuthorizedPeers: -1
+  _destroyIfDestroyerLeaves: 0
+  _auth: {fileID: 9223182107242028739}
+  _defaultBehaviour: {fileID: 0}
+  _behaviours:
+  - {fileID: 9223182107242028739}
 --- !u!1 &8902566730286398977
 GameObject:
   m_ObjectHideFlags: 0
@@ -809,6 +854,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.264, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5377102261250013824}
   m_Father: {fileID: 4428586262105570234}

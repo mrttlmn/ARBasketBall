@@ -124,6 +124,8 @@ GameObject:
   - component: {fileID: 8438143448310324314}
   - component: {fileID: -8316806614718886949}
   - component: {fileID: -5949496669294859367}
+  - component: {fileID: 6528678802529415574}
+  - component: {fileID: 8486219864857291690}
   m_Layer: 0
   m_Name: ball
   m_TagString: Untagged
@@ -187,6 +189,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b985a9fcf0704b4fabdeef85ca398bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6528678802529415574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2946312054567321529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17d034239e1d4c618a9095b87e94d006, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _owner: {fileID: 8486219864857291690}
+  _ownedByHost: 1
+  _observeByDefault: 1
+--- !u!114 &8486219864857291690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2946312054567321529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fd171c6c1184ff491f420f69849ba07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rawId: 0
+  _prefabId: 2876272466170370315
+  _destructionAuthorizedPeers: -1
+  _destroyIfDestroyerLeaves: 0
+  _auth: {fileID: 6528678802529415574}
+  _defaultBehaviour: {fileID: 0}
+  _behaviours:
+  - {fileID: 6528678802529415574}
 --- !u!1 &8390594606893100357
 GameObject:
   m_ObjectHideFlags: 0

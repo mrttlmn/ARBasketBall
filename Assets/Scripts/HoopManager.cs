@@ -2,6 +2,7 @@ using Niantic.ARDK.AR;
 using Niantic.ARDK.AR.ARSessionEventArgs;
 using Niantic.ARDK.AR.HitTest;
 using Niantic.ARDK.External;
+using Niantic.ARDK.Networking.HLAPI.Object.Unity;
 using Niantic.ARDK.Utilities.Input.Legacy;
 using System.Collections;
 using System.Collections.Generic;
@@ -16,15 +17,14 @@ public class HoopManager : MonoBehaviour
     public ARHitTestResultType HitTestType = ARHitTestResultType.ExistingPlane;
 
     /// The object we will place when we get a valid hit test result!
-    public GameObject PlacementObjectPf;
-    public GameObject BallPrefab;
     /// A list of placed game objects to be destroyed in the OnDestroy method.
     private List<GameObject> _placedObjects = new List<GameObject>();
     /// Internal reference to the session, used to get the current frame to hit test against.
     private IARSession _session;
 
     public bool hoopPlaced = false;
-    private GameObject hoop;
+
+    public NetworkedUnityObject _hoop;
     private void Start()
     {
         ARSessionFactory.SessionInitialized += OnAnyARSessionDidInitialize;
@@ -120,21 +120,16 @@ public class HoopManager : MonoBehaviour
         if (!hoopPlaced)
         {
             Ray ray = Camera.main.ScreenPointToRay(touch.position);
-
-            Debug.DrawLine(ray.origin, Camera.main.transform.forward * 50000000, Color.red);
+          
             if (Physics.Raycast(ray, out RaycastHit hit))
             {
-                Debug.Log("fd");
+                Handheld.Vibrate();
                 Vector3 newVector = new Vector3(hit.point.x, hit.point.y, hit.point.z);
-                GameObject newGO = Instantiate(PlacementObjectPf, newVector, transform.rotation);
                 var rotation = hit.transform.parent.gameObject.transform.rotation.eulerAngles;
-                Debug.Log(rotation);
                 rotation.z += 180;
-                Debug.Log(rotation);
+                NetworkedUnityObject spawnedHoop = _hoop.NetworkSpawn(newVector,Quaternion.Euler(rotation));
 
-                newGO.transform.rotation = Quaternion.Euler(rotation);
-                _placedObjects.Add(newGO);
-                hoop = newGO;
+                _placedObjects.Add(spawnedHoop.gameObject);
                 hoopPlaced = true;
 
             }
@@ -144,7 +139,7 @@ public class HoopManager : MonoBehaviour
     public void ClearHoop()
     {
         _placedObjects.Clear();
-        GameObject.Destroy(hoop);
+        
         hoopPlaced = false;
         
     }

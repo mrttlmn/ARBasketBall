@@ -5,7 +5,22 @@
       "ProjectGuid": "1f3ffa0a-02a8-1488-f88e-03787831c6f5",
       "DisplayName": "Assembly-CSharp",
       "ColorIndex": 0
+    },
+    "5f247d5c-daa1-5979-5e82-aef331039b4b": {
+      "ProjectGuid": "5f247d5c-daa1-5979-5e82-aef331039b4b",
+      "DisplayName": "ARDK-Examples",
+      "ColorIndex": 1
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Miscellaneous Files",
+      "ColorIndex": -1
+    },
+    "462c038a-3810-4511-72d5-25f2f4477bfa": {
+      "ProjectGuid": "462c038a-3810-4511-72d5-25f2f4477bfa",
+      "DisplayName": "ARDK",
+      "ColorIndex": 2
     }
   },
-  "NextColorIndex": 1
+  "NextColorIndex": 3
 }
