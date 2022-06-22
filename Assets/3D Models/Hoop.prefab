@@ -748,6 +748,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4428586262105570234}
   - component: {fileID: 2942224305631391939}
+  - component: {fileID: -6867098962337563051}
+  - component: {fileID: -3286293762782010785}
   m_Layer: 0
   m_Name: Hoop
   m_TagString: Untagged
@@ -783,6 +785,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92bc76c8d71ced0458759a57e5e67337, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-6867098962337563051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7984376276481819372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17d034239e1d4c618a9095b87e94d006, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _owner: {fileID: -3286293762782010785}
+  _ownedByHost: 1
+  _observeByDefault: 1
+--- !u!114 &-3286293762782010785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7984376276481819372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fd171c6c1184ff491f420f69849ba07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rawId: 0
+  _prefabId: -6521786933641483449
+  _destructionAuthorizedPeers: -1
+  _destroyIfDestroyerLeaves: 0
+  _auth: {fileID: -6867098962337563051}
+  _defaultBehaviour: {fileID: 0}
+  _behaviours: []
 --- !u!1 &8902566730286398977
 GameObject:
   m_ObjectHideFlags: 0
