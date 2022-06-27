@@ -203,7 +203,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _owner: {fileID: -1205896550490732837}
-  _ownedByHost: 1
+  _ownedByHost: 0
   _observeByDefault: 1
 --- !u!114 &-1205896550490732837
 MonoBehaviour:
@@ -220,7 +220,7 @@ MonoBehaviour:
   _rawId: 0
   _prefabId: -7241049726229034105
   _destructionAuthorizedPeers: -1
-  _destroyIfDestroyerLeaves: 0
+  _destroyIfDestroyerLeaves: 1
   _auth: {fileID: -5257421640595040164}
   _defaultBehaviour: {fileID: 4448658900383258835}
   _behaviours:
