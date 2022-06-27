@@ -126,6 +126,7 @@ GameObject:
   - component: {fileID: -5949496669294859367}
   - component: {fileID: -5257421640595040164}
   - component: {fileID: -1205896550490732837}
+  - component: {fileID: 4448658900383258835}
   m_Layer: 0
   m_Name: ball
   m_TagString: Untagged
@@ -221,8 +222,23 @@ MonoBehaviour:
   _destructionAuthorizedPeers: -1
   _destroyIfDestroyerLeaves: 0
   _auth: {fileID: -5257421640595040164}
-  _defaultBehaviour: {fileID: 0}
-  _behaviours: []
+  _defaultBehaviour: {fileID: 4448658900383258835}
+  _behaviours:
+  - {fileID: -5257421640595040164}
+  - {fileID: 4448658900383258835}
+--- !u!114 &4448658900383258835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2946312054567321529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6de715974bb82a34181071ebeed2f90b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _owner: {fileID: -1205896550490732837}
 --- !u!1 &8390594606893100357
 GameObject:
   m_ObjectHideFlags: 0

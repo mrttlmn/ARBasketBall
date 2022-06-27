@@ -11,12 +11,21 @@ public class HoopController : MonoBehaviour
     }
     public void HoopRotateXPlus5()
     {
-        var Hoop = GameObject.Find("Hoop(Clone)");      
+        var Hoop = GameObject.Find("Hoop(Clone)");
         Hoop.transform.Rotate(Vector3.up * 5);
     }
     public void HoopRotateXMinus5()
     {
         var Hoop = GameObject.Find("Hoop(Clone)");
         Hoop.transform.Rotate(Vector3.up * -5);
+    }
+
+    public void HoopYPlus()
+    {
+        transform.position = new Vector3(transform.position.x, (transform.position.y + 0.5f), transform.position.z);
+    }
+    public void HoopYMinus()
+    {
+        transform.position = new Vector3(transform.position.x, (transform.position.y - 0.5f), transform.position.z);
     }
 }

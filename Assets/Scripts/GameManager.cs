@@ -153,7 +153,8 @@ public class GameManager : MonoBehaviour
             return;
 
         // Instantiate the playing field at floor level
-        _playingField = HoopPrefab.NetworkSpawn(_arNetworking.Networking,position,Quaternion.identity).gameObject;
+        if (_playingField == null)
+            _playingField = HoopPrefab.NetworkSpawn(_arNetworking.Networking, position, Quaternion.identity).gameObject;
 
         // Set the score text for all players
         //    _scoreText.Value = "Score: 0 - 0";
@@ -172,7 +173,7 @@ public class GameManager : MonoBehaviour
     {
         if (_manager != null)
             _manager.SendQueuedData();
-        
+
         if (_synced && !_gameStart && _isHost)
         {
             _debug.text = "synced";
@@ -201,7 +202,7 @@ public class GameManager : MonoBehaviour
             return;
 
         var results =
-          currentFrame.HitTest(_camera.pixelWidth,_camera.pixelHeight,touch.position,ARHitTestResultType.ExistingPlaneUsingExtent);
+          currentFrame.HitTest(_camera.pixelWidth, _camera.pixelHeight, touch.position, ARHitTestResultType.ExistingPlaneUsingExtent);
 
         if (results.Count <= 0)
         {

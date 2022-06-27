@@ -42,6 +42,8 @@ public class BallThrow : MonoBehaviour
     {
         if (!_synced)
             return;
+
+
         forceVec = arCamera.transform.forward;
         forceVec.y += 0.5f;
 
