@@ -17,7 +17,7 @@ public class BallNetworkBehaviour : NetworkedBehaviour
 
             new UnreliableBroadcastTransformPacker
             (
-              "netTransform",
+              "netTransform1",
               transform,
               descriptor,
               TransformPiece.Position,
