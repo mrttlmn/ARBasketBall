@@ -58,42 +58,8 @@ public class HoopManager : MonoBehaviour
         }
 
         _placedObjects.Clear();
-    }
-    //private void CallobrateHoop()
-    //{
-    //    Hoop.transform.position = HoopAnchnor.WorldTransform.ToPosition();
-    //    Debug.Log(Hoop.transform.position + " -- " + HoopAnchnor.WorldTransform.ToPosition());
-    //}
-    private void Update()
-    {
-        //if (Hoop != null && HoopAnchnor != null)
-        //{
-        //    Debug.Log("Callobrating.");
-        //    Debug.Log(HoopAnchnor.WorldTransform.ToRotation());
-
-        //    CallobrateHoop();
-        //}
-
-        if (_session == null)
-        {
-            return;
-        }
-
-        if (PlatformAgnosticInput.touchCount <= 0)
-        {
-            return;
-        }
-
-        var touch = PlatformAgnosticInput.GetTouch(0);
-        if (touch.phase == TouchPhase.Began)
-        {
-
-            TouchBegan(touch);
-
-        }
-    }
-
-    private void TouchBegan(Touch touch)
+    } 
+    public void TouchBegan(Touch touch)
     {
 
         var currentFrame = _session.CurrentFrame;

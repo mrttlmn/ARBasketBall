@@ -14,7 +14,6 @@ public class BallStats : MonoBehaviour
     {
         if (other.gameObject.name == "Hoop")
         {
-            Handheld.Vibrate();
             Debug.Log("Basket");
         }
     }

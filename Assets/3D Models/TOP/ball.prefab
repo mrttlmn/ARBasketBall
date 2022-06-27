@@ -201,7 +201,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17d034239e1d4c618a9095b87e94d006, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _owner: {fileID: 0}
+  _owner: {fileID: -1205896550490732837}
   _ownedByHost: 1
   _observeByDefault: 1
 --- !u!114 &-1205896550490732837
