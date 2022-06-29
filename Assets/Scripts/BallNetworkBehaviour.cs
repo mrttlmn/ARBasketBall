@@ -85,22 +85,20 @@ public class BallNetworkBehaviour : NetworkedBehaviour
     // Signal to host that a goal has been scored
     private void OnTriggerEnter(Collider other)
     {
+        
         if (!_gameStart || !_isHost)
             return;
 
         _initialVelocity = 0.6f;
         _velocity = new Vector3(0, 0, _initialVelocity);
         gameObject.transform.position = _initialPosition;
-
-        switch (other.gameObject.tag)
+        Debug.Log("This User : " + Controller._self.ToString());
+        Debug.Log("Kullanýcý Sayýsý : " + Controller._players.Count);
+        foreach (IPeer player in Controller._players)
         {
-            case "RedGoal":
-                Controller.GoalScored("red");
-                break;
-
-            case "BlueGoal":
-                Controller.GoalScored("blue");
-                break;
+            Debug.Log("Scored Player : " + player.Identifier);
+            if (Controller._self == player)
+                Controller.GoalScored(player);
         }
     }
 

@@ -1,7 +1,7 @@
 // Copyright 2022 Niantic, Inc. All Rights Reserved.
 
 using System;
-
+using System.Collections.Generic;
 using Niantic.ARDK.AR;
 using Niantic.ARDK.AR.ARSessionEventArgs;
 using Niantic.ARDK.AR.HitTest;
@@ -73,8 +73,7 @@ public class GameManager :
     private MessageStreamReplicator<Vector3> _hitStreamReplicator;
 
     private INetworkedField<string> _scoreText;
-    private int _redScore;
-    private int _blueScore;
+  
     private INetworkedField<Vector3> _fieldPosition;
     private INetworkedField<byte> _gameStarted;
 
@@ -91,12 +90,16 @@ public class GameManager :
     private BallNetworkBehaviour _ballBehaviour;
 
     private bool _isHost;
-    private IPeer _self;
+    public IPeer _self;
 
     private bool _gameStart;
     private bool _synced;
     private bool _hoopSpawned = false;
 
+    /*---------------*/
+
+    public IReadOnlyCollection<IPeer> _players;
+    public Text scoreBoard;
     private void Start()
     {
         //startGame.SetActive(false);
@@ -129,7 +132,7 @@ public class GameManager :
     {
         //startGame.SetActive(false);
 
-        //_gameStart = true;
+        _gameStart = true;
         _gameStarted.Value = Convert.ToByte(true);
         _ballBehaviour.GameStart(_isHost);
     }
@@ -193,105 +196,105 @@ public class GameManager :
         _ball = _ballBehaviour.gameObject;
 
         _ballBehaviour.Controller = this;
+        Debug.Log("Game Started :" + _gameStart);
+        StartGame();
     }
 
     // Reset the ball when a goal is scored, increase score for player that scored
     // Only the host should call this method
-    internal void GoalScored(string color)
+    internal void GoalScored(IPeer player)
     {
         // color param is the color of the goal that the ball went into
         // we score points by getting the ball in our opponent's goal
-        if (color == "red")
-        {
-            Debug.Log
-            (
-              "Point scored for team blue. " +
-              "Setting score via HLAPI. Only host will receive this log entry."
-            );
+        Debug.Log("Player With ID" + player.Identifier.ToString() + " is Scored!");
 
-            _blueScore += 1;
-        }
-        else
-        {
-            Debug.Log
-            (
-              "Point scored for team red. " +
-              "Setting score via HLAPI. Only host will receive this log entry."
-            );
-
-            _redScore += 1;
-        }
-
-        _scoreText.Value = string.Format("Score: {0} - {1}", _redScore, _blueScore);
+        _scoreText.Value = "Score!" + player.Identifier.ToString();
+        scoreBoard.text = _scoreText.Value.ToString();
     }
 
     // Every frame, detect if you have hit the ball
     // If so, either bounce the ball (if host) or tell host to bounce the ball
     private void Update()
     {
-        if(_gameStart)
-            InsPanel.gameObject.SetActive(false);
-        
-        if (_manager != null)
-            _manager.SendQueuedData();
-        if(!_synced)
-            InsPanelScan.gameObject.SetActive(true);
-        if (_synced && !_gameStart && _isHost && !_hoopSpawned)
+        try
         {
-            if (PlatformAgnosticInput.touchCount <= 0)
+            if (_manager != null)
+                _manager.SendQueuedData();
+
+            if (!_gameStart && _synced)
+                _players = _manager.Networking.OtherPeers;
+
+            if (_gameStart)
+                InsPanel.gameObject.SetActive(false);
+            if (!_synced)
+                InsPanelScan.gameObject.SetActive(true);
+
+            if (_synced && !_gameStart && _isHost && !_hoopSpawned)
+            {
+                if (PlatformAgnosticInput.touchCount <= 0)
+                    return;
+
+                var touch = PlatformAgnosticInput.GetTouch(0);
+                InsPanelScan.gameObject.SetActive(false);
+                InsPanelPlace.gameObject.SetActive(true);
+                if (touch.phase == TouchPhase.Began)
+                {
+                    //var distance =
+                    //  Vector2.Distance
+                    //  (
+                    //    touch.position,
+                    //    new Vector2(startGame.transform.position.x, startGame.transform.position.y)
+                    //  );
+
+                    //if (distance <= 80)
+                    //    return;
+
+                    FindFieldLocation(touch);
+                    _hoopSpawned = true;
+                    InsPanelPlace.gameObject.SetActive(false);
+                    if (_playingField != null)
+                    {
+                        Debug.Log("Pota var");
+                    }
+                }
+
+            }
+
+            if (!_gameStart)
                 return;
 
-            var touch = PlatformAgnosticInput.GetTouch(0);
-            InsPanelScan.gameObject.SetActive(false);
-            InsPanelPlace.gameObject.SetActive(true);
-            if (touch.phase == TouchPhase.Began)
+            if (_recentlyHit)
             {
-                //var distance =
-                //  Vector2.Distance
-                //  (
-                //    touch.position,
-                //    new Vector2(startGame.transform.position.x, startGame.transform.position.y)
-                //  );
+                _hitLockout += 1;
 
-                //if (distance <= 80)
-                //    return;
-
-                FindFieldLocation(touch);
-                _hoopSpawned = true;
-                InsPanelPlace.gameObject.SetActive(false);
-                Debug.Log("Game Started :" + _gameStart);
+                if (_hitLockout >= 15)
+                {
+                    _recentlyHit = false;
+                    _hitLockout = 0;
+                }
             }
-               
+
+            var distance2 = Vector3.Distance(_player.transform.position, _ball.transform.position);
+            if (distance2 > .25 || _recentlyHit)
+                return;
+
+            var bounceDirection = _ball.transform.position - _player.transform.position;
+            bounceDirection = Vector3.Normalize(bounceDirection);
+            _recentlyHit = true;
+
+            if (_isHost)
+                _ballBehaviour.Hit(bounceDirection);
+            else
+                _hitStreamReplicator.SendMessage(bounceDirection, _auth.PeerOfRole(Role.Authority));
+        
         }
-
-        if (!_gameStart)
-            return;
-
-        if (_recentlyHit)
+        catch (Exception e)
         {
-            _hitLockout += 1;
+            Debug.Log(e);
 
-            if (_hitLockout >= 15)
-            {
-                _recentlyHit = false;
-                _hitLockout = 0;
-            }
         }
 
-        var distance2 = Vector3.Distance(_player.transform.position, _ball.transform.position);
-        if (distance2 > .25 || _recentlyHit)
-            return;
-
-        var bounceDirection = _ball.transform.position - _player.transform.position;
-        bounceDirection = Vector3.Normalize(bounceDirection);
-        _recentlyHit = true;
-
-        if (_isHost)
-            _ballBehaviour.Hit(bounceDirection);
-        else
-            _hitStreamReplicator.SendMessage(bounceDirection, _auth.PeerOfRole(Role.Authority));
     }
-
     private void FindFieldLocation(Touch touch)
     {
         var currentFrame = _arNetworking.ARSession.CurrentFrame;
@@ -344,13 +347,10 @@ public class GameManager :
             {
                 _synced = true;
 
-                if (_isHost)
+                if (!_isHost)
                 {
-                    //startGame.SetActive(true);
-                    InstantiateObjects(_location);
-                }
-                else
-                {
+                    ////startGame.SetActive(true);
+                    //InstantiateObjects(_location);
                     InstantiateObjects(_arNetworking.LatestPeerPoses[args.Peer].ToPosition());
                 }
             }
