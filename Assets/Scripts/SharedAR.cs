@@ -21,6 +21,12 @@ public class SharedAR : MonoBehaviour
     private IARNetworking _arNetworking;
     private IMultipeerNetworking _networking;
     private IARSession _session;
+    private string SessionID;
+    public Text gameRoomText;
+    [SerializeField]
+    private Canvas gameLoginPanel = null;   
+    [SerializeField]
+    private Canvas gameMainPanel = null;
 
     private Dictionary<IPeer, GameObject> _poseIndicatorDict = new Dictionary<IPeer, GameObject>();
     public void CreateAndRunSharedAR()
@@ -39,8 +45,9 @@ public class SharedAR : MonoBehaviour
         _session.Run(worldTrackConfig);
         _session.Ran += OnSessionRan;
 
-        var sessionID = SessionIDField.text;
-        var sesionIdAsByte = Encoding.UTF8.GetBytes(sessionID);
+        SessionID = SessionIDField.text;
+        
+        var sesionIdAsByte = Encoding.UTF8.GetBytes(SessionID);
 
         _networking.Join(sesionIdAsByte);
         _networking.Connected += OnNetworkConnected;
@@ -48,10 +55,15 @@ public class SharedAR : MonoBehaviour
     private void OnSessionRan(ARSessionRanArgs args)
     {
         Debug.Log(message: "AR Session Baþladý");
+       
     }
     private void OnNetworkConnected(ConnectedArgs args)
     {
         Debug.LogFormat("Networking joied, peerID:{0},isHost : {1}", args.Self, args.IsHost);
+        gameLoginPanel.gameObject.SetActive(false);
+        gameMainPanel.gameObject.SetActive(true);
+        gameRoomText.text = "Game Room :" + SessionID;
+        
     }
     private void OnDestroy()
     {

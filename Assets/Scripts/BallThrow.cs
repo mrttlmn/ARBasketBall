@@ -12,6 +12,7 @@ using Niantic.ARDK.Networking.HLAPI.Data;
 using Niantic.ARDK.Networking.MultipeerNetworkingEventArgs;
 using Niantic.ARDK.AR.Networking.ARNetworkingEventArgs;
 using Niantic.ARDK.Networking.HLAPI.Routing;
+using Niantic.ARDK.Networking.HLAPI.Object;
 
 public class BallThrow : MonoBehaviour
 {
@@ -42,7 +43,7 @@ public class BallThrow : MonoBehaviour
     {
         if (!_synced)
             return;
-
+       
 
         forceVec = arCamera.transform.forward;
         forceVec.y += 0.5f;
