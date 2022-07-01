@@ -62,12 +62,12 @@
     <Compile Include="Assets\Scripts\BallNetworkBehaviour.cs" />
     <Compile Include="Assets\Scripts\HoopController.cs" />
     <Compile Include="Assets\Scripts\SwipeLogger.cs" />
+    <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\ARDKExamples\Common\Logging\ScrollingLog.cs" />
     <Compile Include="Assets\Scripts\BallStats.cs" />
     <Compile Include="Assets\Scripts\BallThrow.cs" />
     <Compile Include="Assets\Scripts\HoopNetworkBehaviour.cs" />
     <Compile Include="Assets\Scripts\ThrowButtonControls.cs" />
-    <Compile Include="Assets\Scripts\GameManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

@@ -26,8 +26,8 @@ public class BallNetworkBehaviour : NetworkedBehaviour
     private Vector3 _initialPosition;
 
     // Flags for whether the game has started and if the local player is the host
-    private bool _gameStart;
-    private bool _isHost;
+    //private bool _gameStart;
+    //private bool _isHost;
 
     // Store the start location of the ball
     private void Start()
@@ -36,69 +36,66 @@ public class BallNetworkBehaviour : NetworkedBehaviour
     }
 
     // Set up the initial conditions
-    internal void GameStart(bool isHost)
+    public void GameStart(bool isHost)
     {
-        _isHost = isHost;
-        _gameStart = true;
+        //_isHost = isHost;
+        //_gameStart = true;
         _initialPosition = transform.position;
 
-        if (!_isHost)
-            return;
+        //if (!_isHost)
+        //    return;
 
-        _velocity = new Vector3(_initialVelocity, 0, _initialVelocity);
+        //_velocity = new Vector3(_initialVelocity, 0, _initialVelocity);
     }
 
-    // Signal that the ball has been hit, with a unit vector representing the new direction
-    internal void Hit(Vector3 direction)
-    {
-        if (!_gameStart || !_isHost)
-            return;
-
-        _velocity = direction * _initialVelocity;
-        _initialVelocity *= 1.1f;
-    }
 
     // Perform movement, send position to non-host player
     private void Update()
     {
-        if (!_gameStart || !_isHost)
-            return;
+        //if (!_gameStart || !_isHost)
+        //    return;
 
-        _pos = gameObject.transform.position;
+        //_pos = gameObject.transform.position;
 
-        _pos.x += _velocity.x * Time.deltaTime;
-        _pos.z += _velocity.z * Time.deltaTime;
+        //_pos.x += _velocity.x * Time.deltaTime;
+        //_pos.z += _velocity.z * Time.deltaTime;
 
-        transform.position = _pos;
+        //transform.position = _pos;
 
-        if (_pos.x > _initialPosition.x + _lrBound)
-            _velocity.x = -_initialVelocity;
-        else if (_pos.x < _initialPosition.x - _lrBound)
-            _velocity.x = _initialVelocity;
+        //if (_pos.x > _initialPosition.x + _lrBound)
+        //    _velocity.x = -_initialVelocity;
+        //else if (_pos.x < _initialPosition.x - _lrBound)
+        //    _velocity.x = _initialVelocity;
 
-        if (_pos.z > _initialPosition.z + _fbBound)
-            _velocity.z = -_initialVelocity;
-        else if (_pos.z < _initialPosition.z - _fbBound)
-            _velocity.z = _initialVelocity;
+        //if (_pos.z > _initialPosition.z + _fbBound)
+        //    _velocity.z = -_initialVelocity;
+        //else if (_pos.z < _initialPosition.z - _fbBound)
+        //    _velocity.z = _initialVelocity;
     }
 
     // Signal to host that a goal has been scored
     private void OnTriggerEnter(Collider other)
     {
-        
-        if (!_gameStart || !_isHost)
-            return;
-
-        _initialVelocity = 0.6f;
-        _velocity = new Vector3(0, 0, _initialVelocity);
-        gameObject.transform.position = _initialPosition;
-        Debug.Log("This User : " + Controller._self.ToString());
-        Debug.Log("Kullanýcý Sayýsý : " + Controller._players.Count);
-        foreach (IPeer player in Controller._players)
+        Debug.Log("Trigger");
+        if (other.name == "Hoop")
         {
-            Debug.Log("Scored Player : " + player.Identifier);
-            if (Controller._self == player)
-                Controller.GoalScored(player);
+            Debug.Log(GameManager._gameStart + "  " + GameManager._isHost); ;
+            if (!GameManager._gameStart)
+                return;
+            //Debug.Log(GameManager.managerSingleton.gameObject.name);
+            //_initialVelocity = 0.6f;
+            //_velocity = new Vector3(0, 0, _initialVelocity);
+            //gameObject.transform.position = _initialPosition;
+
+            Debug.Log("This User : " + GameManager._self.ToString());
+
+            GameManager.managerSingleton.GoalScored(GameManager._self);
+            Debug.Log("This User ssss : " + GameManager._self.ToString());
+            //foreach (IPeer player in GameManager.managerSingleton._players)
+            //{
+            //    Debug.Log("Scored Player : " + player.Identifier);
+            //    if (GameManager.managerSingleton._self == player)
+            //}
         }
     }
 
